@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="../style.css" />
+    <title>Todo List</title>
+  </head>
+
+  <body>
+    <header>
+      <h1>Saaketh's Todo List</h1>
+    </header>
+    <form method="POST" action="/" style="min-height: 20vh;">
+      <input
+        type="text"
+        class="todo-input"
+        name="title"
+        id="title"
+        placeholder="todo"
+      />
+      <button type="submit" class="todo-button">
+        <i class="fas fa-plus-square"></i>
+      </button>
+    </form>
+
+    <div class="todo-container">
+      <ul class="todo-list">
+        <% listItems.forEach(function(item){ var Item = item; %>
+        <div class="todo">
+          <li><%= item %></li>
+          <form action="/<%=item %>" method="POST">
+            <button id="completeButton" onclick="completeButton(Item)">
+              <i class="fas fa-check"></i>
+            </button>
+          </form>
+          <form action="/delete" method="POST">
+            <button id="deleteButton"><i class="fas fa-trash"></i></button>
+          </form>
+        </div>
+        <% }); %>
+      </ul>
+    </div>
+
+    <script src="./app.js"></script>
+  </body>
+</html>
